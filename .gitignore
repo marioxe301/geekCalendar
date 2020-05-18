@@ -1,0 +1,9 @@
+# visual studio configs
+.vscode/
+
+# Binary files
+
+*.bin
+*.exe
+*.out
+*.app
