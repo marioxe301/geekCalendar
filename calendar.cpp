@@ -17,30 +17,31 @@ void put_year(std::vector<std::string>&format,int year){
     int inital_pos = format[0].find("*");
     format[0].replace(inital_pos,4,std::to_string(year));
 }
-void put_days(std::vector<std::string>&format,int start,int end){
+void put_days(std::vector<std::string>&format,int start,int end,int day,int &day_index){
     // 39 es el tamaño del formato
     int size_of_row = 6;
     int index = 4;
-    int day = 1; 
+    int dayc = 1; 
     int initial_index = (start == 0) ? 0 :(start * size_of_row); // a este se le va sumar el size_of_row en cada iteracion
     // si el tamaño es mayor a 39 se reinicia a 0 el initial index y se le suma al index + 1
-    for(day; day<=end;day++){
+    for(dayc; dayc<=end;dayc++){
         if(initial_index<39){
-            if(day<10){
-                format[index].replace(initial_index,3," "+std::to_string(day)+" ");
+            if(dayc<10){
+                format[index].replace(initial_index,3," "+std::to_string(dayc)+" ");
             }else{
-                format[index].replace(initial_index,3,std::to_string(day)+" ");
+                format[index].replace(initial_index,3,std::to_string(dayc)+" ");
             }
-
+            if(day==dayc){ day_index = index;}
             initial_index+=size_of_row;
         }else{
             index++;
             initial_index = 0;
-            if(day<10){
-                format[index].replace(initial_index,3," "+std::to_string(day)+" ");
+            if(dayc<10){
+                format[index].replace(initial_index,3," "+std::to_string(dayc)+" ");
             }else{
-                format[index].replace(initial_index,3,std::to_string(day)+" ");
+                format[index].replace(initial_index,3,std::to_string(dayc)+" ");
             }
+            if(day==dayc){ day_index = index;}
             initial_index+=size_of_row;
         }
     }
@@ -102,7 +103,7 @@ Calendar::Calendar(){
     init_variables();
     put_month(format,month);
     put_year(format,year);
-    put_days(format,initial_day,number_of_days);
+    put_days(format,initial_day,number_of_days,day,date_index);
 }
 
 void Calendar::print_calendar(){
@@ -110,7 +111,7 @@ void Calendar::print_calendar(){
         size_t found = format[i].find(std::to_string(day));
         if(found!=std::string::npos){
             for(int j= 0;j<format[i].size();j++){
-                if(j == found){
+                if(j == found && i == date_index){
                     std::cout<< BOLDRED<<format[i][j]<<RESET;
                     std::cout<< BOLDRED<<format[i][j+1]<<RESET;
                     j+=2;
@@ -141,5 +142,5 @@ Calendar::Calendar(int m,int y){
     day = -1;
     put_month(format,month);
     put_year(format,year);
-    put_days(format,initial_day,number_of_days);
+    put_days(format,initial_day,number_of_days,day,date_index);
 }

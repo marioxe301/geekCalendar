@@ -7,7 +7,8 @@ private:
     int month;
     int initial_day;
     int day;
-    int number_of_days; 
+    int number_of_days;
+    int date_index;
     std::vector<std::string>format;
 public:
     Calendar(int month,int year);
@@ -20,7 +21,7 @@ public:
 
 void put_month(std::vector<std::string>&format,int month);
 void put_year(std::vector<std::string>&format,int year);
-void put_days(std::vector<std::string>&format,int start,int end);
+void put_days(std::vector<std::string>&format,int start,int end,int day,int &day_index);
 
 int get_number_of_days(int year,int month);
 int get_initial_day(int month, int year);
