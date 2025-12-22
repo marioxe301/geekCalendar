@@ -2,8 +2,14 @@
 .vscode/
 
 # Binary files
-
+gkcal
+gkcalendar
 *.bin
 *.exe
 *.out
 *.app
+
+# Distribution files
+*.tar.gz
+*.tar.gz.sha256
+gkcal-v*/
