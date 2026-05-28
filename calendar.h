@@ -1,29 +1,34 @@
 #ifndef CALENDAR_H
 #define CALENDAR_H
 
-class Calendar{
+#include <string>
+#include <vector>
+
+class Calendar {
 private:
-    int year;
-    int month;
-    int initial_day;
-    int day;
-    int number_of_days;
-    int date_index;
-    std::vector<std::string>format;
+  int year;
+  int month;
+  int initial_day;
+  int day;
+  int number_of_days;
+  int date_index;
+  std::vector<std::string> format;
+
 public:
-    Calendar(int month,int year);
-    Calendar();
-    
-    void init_template();
-    void init_variables();
-    void print_calendar();
+  Calendar(int month, int year);
+  Calendar();
+
+  void init_template();
+  void init_variables();
+  void print_calendar();
 };
 
-void put_month(std::vector<std::string>&format,int month);
-void put_year(std::vector<std::string>&format,int year);
-void put_days(std::vector<std::string>&format,int start,int end,int day,int &day_index);
+void put_month(std::vector<std::string> &format, int month);
+void put_year(std::vector<std::string> &format, int year);
+void put_days(std::vector<std::string> &format, int start, int end, int day,
+              int &day_index);
 
-int get_number_of_days(int year,int month);
+int get_number_of_days(int year, int month);
 int get_initial_day(int month, int year);
 
 #endif
